@@ -3,7 +3,7 @@ SPEC = Gem::Specification.new do |s|
   # Get the facts.
   s.name             = "sinatra-test-helper"
   s.version          = "0.4.0.a"
-  s.description      = "Test helper for Sinatra (usefull for other Sintatra extensions, part of BigBand)."
+  s.description      = "Test helper for Sinatra (part of BigBand)."
 
   # BigBand depedencies
   s.add_dependency "monkey-lib", s.version
