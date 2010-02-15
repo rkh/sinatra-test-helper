@@ -1,9 +1,11 @@
 require "sinatra/base"
+require "sinatra/sugar"
 require "rack/test"
 
 Sinatra::Base.set :environment, :test
 
 module Sinatra
+  Base.ignore_caller
   # This encapsulates general test helpers. See Bacon, RSpec, Test::Spec and Test::Unit for examples.
   module TestHelper
     include ::Rack::Test::Methods
@@ -15,7 +17,7 @@ module Sinatra
           case option
           when String, Symbol then Sinatra.const_get option
           when Module, Hash then option
-          else raise ArumentError, "cannot handle #{option.inspect}"
+          else raise ArgumentError, "cannot handle #{option.inspect}"
           end
         end
         superclass   = options.shift if options.first.is_a? Class
