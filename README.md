@@ -16,6 +16,7 @@ Currently Sinatra::TestHelper ships with support for:
 
 * Bacon
 * Contest
+* Minitest
 * Protest
 * RSpec
 * Test::Spec
