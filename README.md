@@ -15,6 +15,7 @@ Frameworks
 Currently Sinatra::TestHelper ships with support for:
 
 * Bacon
+* Contest
 * Protest
 * RSpec
 * Test::Spec
