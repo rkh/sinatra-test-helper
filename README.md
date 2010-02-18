@@ -13,6 +13,7 @@ Frameworks
 ----------
 
 Currently Sinatra::TestHelper ships with support for:
+
 * Bacon
 * RSpec
 * Test::Spec
