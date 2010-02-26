@@ -1,6 +1,8 @@
 require "sinatra/base"
 require "sinatra/sugar"
 require "rack/test"
+require "forwardable"
+require "monkey"
 
 Sinatra::Base.set :environment, :test
 
@@ -9,6 +11,9 @@ module Sinatra
   # This encapsulates general test helpers. See Bacon, RSpec, Test::Spec and Test::Unit for examples.
   module TestHelper
     include ::Rack::Test::Methods
+    extend Forwardable
+
+    def_delegators :app, :configure, :set, :enable, :disable, :use, :helpers, :register
 
     attr_writer :app
     def app(*options, &block)
