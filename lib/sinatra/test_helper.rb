@@ -25,12 +25,15 @@ module Sinatra
           else raise ArgumentError, "cannot handle #{option.inspect}"
           end
         end
-        superclass   = options.shift if options.first.is_a? Class
-        superclass ||= Sinatra::Base
-        @app         = Class.new(superclass, &block)
-        inspection   = "app"
+        inspection = "app"
         inspection << "(" << options.map { |o| o.inspect }.join(", ") << ")" unless options.empty?
         inspection << " { ... }" if block
+        if options.first.is_a? Class
+          @app = options.shift
+          @app.class_eval(&block) if block
+        else
+          @app = Class.new(Sinatra::Base, &block)
+        end
         options.each do |option|
           if option.is_a? Hash then @app.set option
           else @app.register option
