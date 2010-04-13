@@ -13,7 +13,7 @@ Check it out if you are looking for other fancy Sinatra extensions.
 Installation
 ------------
 
-    gem install sinatra-test-helper --prerelease
+    gem install sinatra-test-helper
 
 Frameworks
 ----------
