@@ -44,6 +44,23 @@ module Sinatra
       @app || Sinatra::Application
     end
 
+    def last_request?
+      last_request
+      true
+    rescue Rack::Test::Error
+      false
+    end
+
+    def session
+      return {} unless last_request?
+      raise Rack::Test:Error, "session not enabled for app" unless last_env["rack.session"] or app.session?
+      last_env["rack.session"]
+    end
+
+    def last_env
+      last_request.env
+    end
+
     def define_route(verb, *args, &block)
       app.send(verb, *args, &block)
     end
