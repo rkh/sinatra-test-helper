@@ -10,10 +10,34 @@ module Sinatra
   Base.ignore_caller
   # This encapsulates general test helpers. See Bacon, RSpec, Test::Spec and Test::Unit for examples.
   module TestHelper
+    module AppMixin
+      def call!(env)
+        env['sinatra.test_helper'].last_sinatra_instance = self if env['sinatra.test_helper']
+        super
+      end
+    end
+
+    class Session < Rack::Test::Session
+      def global_env
+        @global_env ||= {}
+      end
+      private
+      def default_env
+        super.merge global_env
+      end
+    end
+
     include ::Rack::Test::Methods
     extend Forwardable
 
+    def build_rack_test_session(name) # :nodoc:
+      Session.new(rack_mock_session(name)).tap do |s|
+        s.global_env['sinatra.test_helper'] = self
+      end
+    end
+
     def_delegators :app, :configure, :set, :enable, :disable, :use, :helpers, :register
+    attr_writer :last_sinatra_instance
 
     attr_writer :app
     def app(*options, &block)
@@ -41,7 +65,9 @@ module Sinatra
           @app.class_eval "def self.inspect; #{inspection.inspect}; end"
         end
       end
-      @app || Sinatra::Application
+      @app ||= Sinatra::Application
+      @app.extend AppMixin unless @app.is_a? AppMixin
+      @app
     end
 
     def last_request?
@@ -54,7 +80,7 @@ module Sinatra
     def session
       return {} unless last_request?
       raise Rack::Test:Error, "session not enabled for app" unless last_env["rack.session"] or app.session?
-      last_env["rack.session"]
+      last_request.session
     end
 
     def last_env
