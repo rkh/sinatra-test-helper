@@ -1,1 +1,1 @@
-require "sinatra/rspec"
+require "sinatra/rspec/shared"

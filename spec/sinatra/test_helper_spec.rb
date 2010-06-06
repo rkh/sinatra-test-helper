@@ -1,6 +1,8 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe Sinatra::TestHelper do
+  it_should_behave_like 'sinatra'
+
   describe :app do
     before { @app = nil }
 
