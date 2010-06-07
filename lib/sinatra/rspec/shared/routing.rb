@@ -34,7 +34,7 @@ shared_examples_for 'sinatra routing' do
         end
         result = browse_route(verb, '/bar')
         result.status.should == 404
-        result["Content-Type"].should == 'text/html'
+        result["Content-Type"].should include('text/html')
         result.body.should == "<h1>Not Found</h1>" unless verb == 'head'
       end
 
