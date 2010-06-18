@@ -2,7 +2,7 @@ require "sinatra/base"
 require "sinatra/sugar"
 require "rack/test"
 require "forwardable"
-require "monkey"
+require "monkey-lib"
 
 Sinatra::Base.set :environment, :test
 
