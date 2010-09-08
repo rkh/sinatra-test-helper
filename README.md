@@ -1,13 +1,8 @@
 Sinatra::TestHelper
 ===================
 
-Adds helper methods and better integration for various testing frameworks to [Sinatra](http://sinatrarb.com).
-
-BigBand
--------
-
-Sinatra::TestHelper is part of the [BigBand](http://github.com/rkh/big_band) stack.
-Check it out if you are looking for other fancy Sinatra extensions.
+Adds helper methods and better integration for various testing frameworks to
+[Sinatra](http://sinatrarb.com).
 
 
 Installation
@@ -49,3 +44,9 @@ Example:
         browse_route(:get, '/funky').body.should == "funky"
       end
     end
+
+BigBand
+-------
+
+Sinatra::TestHelper is part of the [BigBand](http://github.com/rkh/big_band)
+stack. Check it out if you are looking for other fancy Sinatra extensions.

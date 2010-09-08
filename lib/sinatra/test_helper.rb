@@ -1,13 +1,10 @@
 require "sinatra/base"
-require "sinatra/sugar"
 require "rack/test"
 require "forwardable"
-require "monkey-lib"
 
 Sinatra::Base.set :environment, :test
 
 module Sinatra
-  Base.ignore_caller
   # This encapsulates general test helpers. See Bacon, RSpec, Test::Spec and Test::Unit for examples.
   module TestHelper
     module AppMixin

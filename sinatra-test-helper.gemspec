@@ -1,13 +1,8 @@
 SPEC = Gem::Specification.new do |s|
-
   # Get the facts.
   s.name             = "sinatra-test-helper"
-  s.version          = "0.5.0"
-  s.description      = "Test helper for Sinatra (part of BigBand)."
-
-  # BigBand depedencies
-  s.add_dependency "monkey-lib", "~> 0.5.0"
-  s.add_dependency "sinatra-sugar", "~> 0.5.0"
+  s.version          = "0.6.0"
+  s.description      = "Test helper and framework integration for Sinatra."
 
   # External dependencies
   s.add_dependency "sinatra", "~> 1.0"
@@ -20,5 +15,4 @@ SPEC = Gem::Specification.new do |s|
   s.homepage         = "http://github.com/rkh/#{s.name}"
   s.require_paths    = ["lib"]
   s.summary          = s.description
-  
 end
